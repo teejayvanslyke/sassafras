@@ -1,12 +1,12 @@
 require 'sassafras/version'
 
-AUTHOR = 'FIXME full name'  # can also be an array of Authors
-EMAIL = "FIXME email"
-DESCRIPTION = "description of gem"
+AUTHOR = 'T.J. VanSlyke'  # can also be an array of Authors
+EMAIL = "tj@elctech.com"
+DESCRIPTION = "Sass color scheme generator"
 GEM_NAME = 'sassafras' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'sassafras' # The unix name for your project
-HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
-DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
+HOMEPATH = "http://github.com/teejayvanslyke/#{RUBYFORGE_PROJECT}"
+DOWNLOAD_PATH = "http://github.com/teejayvanslyke/#{RUBYFORGE_PROJECT}"
 EXTRA_DEPENDENCIES = [
   [ 'color-tools',   '>= 1.3.0' ],
   [ 'activesupport', '>= 1.3.0' ]

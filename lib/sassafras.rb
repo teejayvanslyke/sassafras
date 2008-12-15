@@ -217,7 +217,7 @@ module Sassafras
     @@colors = {}
     color_set 'accent1',    +3
     color_set 'complement', +6
-    color_set 'accent3',    +9
+    color_set 'accent2',    +9
 
   end
 
