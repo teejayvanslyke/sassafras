@@ -8,13 +8,13 @@ generator.
 Sassafras will generate any of the following types of color schemes and create 
 logically-named Sass variables for varying lightnesses:
 
-  * basic
-  * complementary
-  * analogous
-  * triadic
-  * split complementary
-  * rectangle
-  * square
+* basic
+* complementary
+* analogous
+* triadic
+* split complementary
+* rectangle
+* square
 
 Installation
 ============
