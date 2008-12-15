@@ -2,7 +2,7 @@ History.txt
 License.txt
 Manifest.txt
 PostInstall.txt
-README.markdown
+README.txt
 Rakefile
 bin/sassafras
 config/hoe.rb
