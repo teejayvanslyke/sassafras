@@ -44,5 +44,7 @@ path = OPTIONS[:path]
 
 theme = Sassafras::Theme.new(:basic, OPTIONS[:base])
 
-puts theme.sass 
+# puts theme.sass 
+
+puts Sassafras::HTMLSwatch.new(theme).output
 
