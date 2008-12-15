@@ -53,7 +53,7 @@ path = OPTIONS[:path]
 theme = Sassafras::Theme.create(OPTIONS[:type], OPTIONS[:base])
 
 if OPTIONS[:format] == 'html'
-  puts Sassafras::HTMLSwatch.new(theme).output
+  Sassafras::HTMLSwatch.new(theme)
 else
   puts theme.sass 
 end

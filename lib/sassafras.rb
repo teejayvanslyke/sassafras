@@ -225,9 +225,6 @@ module Sassafras
 
     def initialize(theme)
       @theme = theme
-    end
-
-    def output
       File.open(File.dirname(__FILE__) + '/sassafras/swatch.html.erb') do |f|
         erb = ERB.new(f.read)
         erb.run(@theme.get_binding)
