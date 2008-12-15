@@ -15,6 +15,7 @@ require 'optparse'
 # NOTE: the option -p/--path= is given as an example, and should probably be replaced in your application.
 
 OPTIONS = {
+  :type     => 'basic',
   :base     => 'red'
 }
 MANDATORY_OPTIONS = %w(  )
@@ -31,6 +32,9 @@ BANNER
   opts.on("-b", "--base=BASE", String,
           "The base color for the color theme",
           "Default: red") { |OPTIONS[:base]| }
+  opts.on("-t", "--type=TYPE", String,
+          "Type of color scheme.  basic|complementary",
+          "Default: basic") { |OPTIONS[:type]| }
   opts.on("-h", "--help",
           "Show this help message.") { puts opts; exit }
   opts.parse!(ARGV)
@@ -42,7 +46,7 @@ end
 
 path = OPTIONS[:path]
 
-theme = Sassafras::Theme.new(:basic, OPTIONS[:base])
+theme = Sassafras::Theme.create(OPTIONS[:type], OPTIONS[:base])
 
 # puts theme.sass 
 

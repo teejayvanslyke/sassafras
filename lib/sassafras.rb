@@ -17,19 +17,41 @@ module Sassafras
 
     attr_reader :type
     attr_reader :tints
+    attr_reader :base_rgb
 
-    def initialize(type, base)
+    class << self
+      def create(type, base)
+        Theme.send(type, base)
+      end
+
+      def basic(base)
+        Theme.new(base)
+      end
+
+      def complementary(base)
+        ComplementaryTheme.new(base)
+      end
+    end
+
+    def initialize(base)
       @base_rgb   = Color::RGB.const_get(base.to_s.camelize)
-      @type       = type
-      @tints      = Tints.new(base)
     end
 
     def base 
       @base_rgb.html
     end
 
+    def base_tints
+      Tints.new(@base_rgb, 'base')
+    end
+
+    def base_shades
+      Shades.new(@base_rgb, 'base')
+    end
+
     def colors 
-      {}.merge(@tints.colors)
+      {}.merge(base_tints.colors).
+         merge(base_shades.colors)
     end
 
     def sass
@@ -44,24 +66,91 @@ module Sassafras
 
   end
 
-  class Tints
+  class ComplementaryTheme < Theme
 
-    attr_reader :colors
+    def complementary_rgb
+      hue = base_rgb.to_hsl.h
+      sat = base_rgb.to_hsl.s
+      lum = base_rgb.to_hsl.l
 
-    def initialize(base)
-      @rgb = Color::RGB.const_get(base.to_s.camelize)
+      hue += 0.3333333
+      if hue > 1.0
+        hue -= 1.0
+      end
+
+      Color::HSL.from_fraction(hue, sat, lum).to_rgb
+    end
+
+    def complementary; complementary_rgb.html; end
+
+    def complementary_shades
+      Shades.new(complementary_rgb, 'comp')
+    end
+
+    def complementary_tints
+      Tints.new(complementary_rgb, 'comp')
+    end
+
+    def colors
+      super.merge(complementary_shades.colors).
+            merge(complementary_tints.colors)
+    end
+
+  end
+
+  class ColorSet 
+
+    def initialize(base_rgb, prefix=nil)
+      @rgb = base_rgb
+      @prefix = prefix
+      @colors = {}
+    end
+    
+    def colors
+      returning Hash.new do |hash|
+        @colors.each do |name, hex|
+          if @prefix
+            hash["#{@prefix}_#{name}"] = hex
+          else
+            hash[name] = hex
+          end
+        end
+      end
+    end
+
+    def method_missing(method, *args)
+      return @colors[method.to_s] if @colors[method.to_s]
+      super
+    end
+
+  end
+
+
+  class Tints < ColorSet
+
+    def initialize(base_rgb, prefix=nil)
+      super(base_rgb, prefix)
       @colors = {
-        :base   => @rgb.html,
-        :mid    => @rgb.lighten_by(50).html,
-        :light  => @rgb.lighten_by(30).html,
-        :pale   => @rgb.lighten_by(10).html
+        'mid'      => @rgb.html,
+        'light'    => @rgb.lighten_by(50).html,
+        'lighter'  => @rgb.lighten_by(30).html,
+        'lightest' => @rgb.lighten_by(10).html
       }
     end
 
-    def base;  @colors[:base];  end
-    def mid;   @colors[:mid];   end
-    def light; @colors[:light]; end
-    def pale;  @colors[:pale];  end
+  end
+
+  class Shades < ColorSet
+    
+    def initialize(base_rgb, prefix=nil)
+      super(base_rgb, prefix)
+      @colors = {
+        'mid'     => @rgb.html,
+        'dark'    => @rgb.darken_by(50).html,
+        'darker'  => @rgb.darken_by(30).html,
+        'darkest' => @rgb.darken_by(10).html
+      }
+    end
 
   end
 
