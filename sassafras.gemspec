@@ -14,11 +14,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.homepage = %q{http://github.com/teejayvanslyke/sassafras}
   s.post_install_message = %q{
-For more information on sassafras, see http://sassafras.rubyforge.org
-
-NOTE: Change this information in PostInstall.txt 
-You can also delete it if you don't want it.
-
+For more information on sassafras, see http://github.com/teejayvanslyke/sassafras/
 
 }
   s.rdoc_options = ["--main", "README.txt"]
