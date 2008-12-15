@@ -9,22 +9,52 @@
 		<meta name="robots" content="all" />	
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
+    <style type="text/css">
+      body {
+        font-family: Helvetica, Verdana, Sans-serif;
+        text-align: center;
+      }
+      .container {
+        width: 600px;
+      }
+      th {
+        text-align: left;
+      }
+      td.swatch {
+        width: 10em;
+      }
+      td.hex {
+        font-family: "Courier New", Fixed;
+      }
+      pre {
+        text-align: left;
+      }
+    </style>
 	</head>
 	<body>
-    <table width="100%">
-    <% color_sets.each do |name, colors| %>
-      <tr>
-        <td colspan="2"><%= name %></td>
-      </tr>
-      <% colors.each do |color, hex| %>
-        <tr>
-          <td>
-            <%= color %>
-          </td>
-          <td style="background-color: <%= hex %>;">&nbsp;</td>
-        </tr>
-      <% end %>
-    <% end %>
-    </table>
+    <div align="center">
+      <div class="container">
+        <h1>Sassafras</h1>
+        <table width="100%">
+        <% color_sets.each do |name, colors| %>
+          <tr>
+            <th colspan="3"><%= name %></td>
+          </tr>
+          <% colors.each do |color, hex| %>
+            <tr>
+              <td>
+                <%= color %>
+              </td>
+              <td class="hex">
+                <%= hex %>
+              </td>
+              <td class="swatch" style="background-color: <%= hex %>;">&nbsp;</td>
+            </tr>
+          <% end %>
+        <% end %>
+        </table>
+        <pre><%= sass %></pre>
+      </div>
+    </div>
 	</body>
 </html>
