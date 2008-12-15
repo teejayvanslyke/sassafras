@@ -50,6 +50,42 @@ describe Sassafras do
 
     end
 
+    describe "when creating an analogous color scheme" do
+
+      before :each do
+        @sassafras = Sassafras::Theme.analogous(:red)
+      end
+
+      it "sets the base color" do
+        @sassafras.base.should == '#ff0000'
+      end
+
+      it "sets the support color" do
+        @sassafras.support.should == '#ff0055'
+      end
+
+      it "sets the accent color" do
+        @sassafras.accent.should == '#ff5500'
+      end
+
+      it "generates the support tints" do
+        @sassafras.support_tints.should be_instance_of(Sassafras::Tints)
+      end
+
+      it "generates the support shades" do
+        @sassafras.support_shades.should be_instance_of(Sassafras::Shades)
+      end
+
+      it "generates the accent tints" do
+        @sassafras.accent_tints.should be_instance_of(Sassafras::Tints)
+      end
+
+      it "generates the accent shades" do
+        @sassafras.accent_shades.should be_instance_of(Sassafras::Shades)
+      end
+
+    end
+
     describe "when generating Sass output" do
       
       before :each do

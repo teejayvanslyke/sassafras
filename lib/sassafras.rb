@@ -31,6 +31,10 @@ module Sassafras
       def complementary(base)
         ComplementaryTheme.new(base)
       end
+
+      def analogous(base)
+        AnalogousTheme.new(base)
+      end
     end
 
     def initialize(base)
@@ -71,22 +75,31 @@ module Sassafras
 
     def get_binding; binding; end
 
+    protected
+
+      def hue_adjusted_base_rgb(steps)
+        one_step = 0.0555555555555
+
+        hue = base_rgb.to_hsl.h
+        sat = base_rgb.to_hsl.s
+        lum = base_rgb.to_hsl.l
+
+        hue += one_step * steps
+        if hue > 1.0
+          hue -= 1.0
+        elsif hue < 0.0
+          hue += 1.0
+        end
+
+        Color::HSL.from_fraction(hue, sat, lum).to_rgb
+      end
+
   end
 
   class ComplementaryTheme < Theme
 
     def complementary_rgb
-      hue = base_rgb.to_hsl.h
-      sat = base_rgb.to_hsl.s
-      lum = base_rgb.to_hsl.l
-
-      hue += 0.3333333333
-      if hue > 1.0
-        hue -= 1.0
-      end
-
-
-      Color::HSL.from_fraction(hue, sat, lum).to_rgb
+      hue_adjusted_base_rgb 6
     end
 
     def complementary; complementary_rgb.html; end
@@ -108,6 +121,54 @@ module Sassafras
       super.merge({
         'complementary_shades' => complementary_shades.colors,
         'complementary_tints'  => complementary_tints.colors
+      })
+    end
+
+  end
+
+  class AnalogousTheme < Theme
+
+    def support_rgb
+      hue_adjusted_base_rgb -1
+    end
+
+    def support; support_rgb.html; end
+
+    def accent_rgb
+      hue_adjusted_base_rgb +1
+    end
+
+    def accent; accent_rgb.html; end
+
+    def support_tints
+      Tints.new(support_rgb, 'support')
+    end
+
+    def support_shades
+      Shades.new(support_rgb, 'support')
+    end
+
+    def accent_tints
+      Tints.new(accent_rgb, 'accent')
+    end
+
+    def accent_shades
+      Shades.new(accent_rgb, 'accent')
+    end
+
+    def colors
+      super.merge(support_shades.colors).
+            merge(support_tints.colors).
+            merge(accent_shades.colors).
+            merge(accent_tints.colors)
+    end
+
+    def color_sets
+      super.merge({
+        'support_shades'       => support_shades.colors,
+        'support_tints'        => support_tints.colors,
+        'accent_shades'        => accent_shades.colors,
+        'accent_tints'         => accent_tints.colors
       })
     end
 
