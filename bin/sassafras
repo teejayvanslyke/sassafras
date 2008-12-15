@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+#
+#  Created on 2008-12-14.
+#  Copyright (c) 2008. All rights reserved.
+
+begin
+  require 'rubygems'
+  require File.dirname(__FILE__) + '/../lib/sassafras'
+rescue LoadError
+  # no rubygems to load, so we fail silently
+end
+
+require 'optparse'
+
+# NOTE: the option -p/--path= is given as an example, and should probably be replaced in your application.
+
+OPTIONS = {
+  :base     => 'red'
+}
+MANDATORY_OPTIONS = %w(  )
+
+parser = OptionParser.new do |opts|
+  opts.banner = <<BANNER
+Sassafras makes you sexy!
+
+Usage: #{File.basename($0)} [options]
+
+Options are:
+BANNER
+  opts.separator ""
+  opts.on("-b", "--base=BASE", String,
+          "The base color for the color theme",
+          "Default: red") { |OPTIONS[:base]| }
+  opts.on("-h", "--help",
+          "Show this help message.") { puts opts; exit }
+  opts.parse!(ARGV)
+
+  if MANDATORY_OPTIONS && MANDATORY_OPTIONS.find { |option| OPTIONS[option.to_sym].nil? }
+    puts opts; exit
+  end
+end
+
+path = OPTIONS[:path]
+
+theme = Sassafras::Theme.new(:basic, OPTIONS[:base])
+
+puts theme.sass 
+
