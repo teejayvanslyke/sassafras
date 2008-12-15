@@ -36,14 +36,14 @@
       <div class="container">
         <h1>Sassafras</h1>
         <table width="100%">
-        <% color_sets.each do |name, colors| %>
+        <% colors.each do |set, variations| %>
           <tr>
-            <th colspan="3"><%= name %></td>
+            <th colspan="3"><%= set %></td>
           </tr>
-          <% colors.each do |color, hex| %>
+          <% variations.each do |name, hex| %>
             <tr>
               <td>
-                <%= color %>
+                <%= name %>
               </td>
               <td class="hex">
                 <%= hex %>

@@ -2,11 +2,15 @@ History.txt
 License.txt
 Manifest.txt
 PostInstall.txt
-README.txt
+README.markdown
 Rakefile
+bin/sassafras
 config/hoe.rb
 config/requirements.rb
+examples/analogous_red.html
+examples/split_complementary_blue.html
 lib/sassafras.rb
+lib/sassafras/swatch.html.erb
 lib/sassafras/version.rb
 script/console
 script/destroy
@@ -16,8 +20,10 @@ setup.rb
 spec/sassafras_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
+swatch.html
 tasks/deployment.rake
 tasks/environment.rake
+tasks/examples.rake
 tasks/rspec.rake
 tasks/website.rake
 website/index.html

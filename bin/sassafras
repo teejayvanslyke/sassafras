@@ -5,6 +5,7 @@
 
 begin
   require 'rubygems'
+  require File.dirname(__FILE__) + '/../lib/sassafras/version.rb'
   require File.dirname(__FILE__) + '/../lib/sassafras'
 rescue LoadError
   # no rubygems to load, so we fail silently
@@ -16,14 +17,14 @@ require 'optparse'
 
 OPTIONS = {
   :type     => 'basic',
-  :base     => 'red',
   :format   => 'sass'
 }
-MANDATORY_OPTIONS = %w(  )
+MANDATORY_OPTIONS = %w(base)
 
 parser = OptionParser.new do |opts|
   opts.banner = <<BANNER
-Sassafras makes you sexy!
+
+Sassafras v#{Sassafras::VERSION::STRING} makes you sexy!
 
 Usage: #{File.basename($0)} [options]
 
@@ -32,7 +33,7 @@ BANNER
   opts.separator ""
   opts.on("-b", "--base=BASE", String,
           "The base color for the color theme",
-          "Default: red") { |OPTIONS[:base]| }
+          "Required.") { |OPTIONS[:base]| }
   opts.on("-t", "--type=TYPE", String,
           "Type of color scheme (basic|complementary|analogous|triadic|split_complementary|rectangle|square)",
           "Default: basic") { |OPTIONS[:type]| }
