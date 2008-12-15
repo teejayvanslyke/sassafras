@@ -11,14 +11,19 @@
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 	</head>
 	<body>
-    <table>
-    <% colors.each do |name, hex| %>
+    <table width="100%">
+    <% color_sets.each do |name, colors| %>
       <tr>
-        <td>
-          <%= name %>
-        </td>
-        <td style="background-color: <%= hex %>;">&nbsp;</td>
+        <td colspan="2"><%= name %></td>
       </tr>
+      <% colors.each do |color, hex| %>
+        <tr>
+          <td>
+            <%= color %>
+          </td>
+          <td style="background-color: <%= hex %>;">&nbsp;</td>
+        </tr>
+      <% end %>
     <% end %>
     </table>
 	</body>

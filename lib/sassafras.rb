@@ -54,6 +54,13 @@ module Sassafras
          merge(base_shades.colors)
     end
 
+    def color_sets
+      {
+        'base_tints' => base_tints.colors,
+        'base_shades' => base_shades.colors
+      }
+    end
+
     def sass
       returning "" do |str|
         colors.each do |name, hex|
@@ -73,10 +80,11 @@ module Sassafras
       sat = base_rgb.to_hsl.s
       lum = base_rgb.to_hsl.l
 
-      hue += 0.3333333
+      hue += 0.3333333333
       if hue > 1.0
         hue -= 1.0
       end
+
 
       Color::HSL.from_fraction(hue, sat, lum).to_rgb
     end
@@ -94,6 +102,13 @@ module Sassafras
     def colors
       super.merge(complementary_shades.colors).
             merge(complementary_tints.colors)
+    end
+
+    def color_sets
+      super.merge({
+        'complementary_shades' => complementary_shades.colors,
+        'complementary_tints'  => complementary_tints.colors
+      })
     end
 
   end
