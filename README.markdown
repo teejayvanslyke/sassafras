@@ -35,5 +35,9 @@ Generate basic variants of red and green:
 
     $ sassafras -t complementary -b red
 
+Sassafras can also generate an HTML reference sheet with color swatches:
+
+    $ sassafras -t split_complementary -b blue -f html
+    
 For more information on the various types of color schemes supported by Sassafras, 
 please see the color theory tutorial on which Sassafras was based at http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm
