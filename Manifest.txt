@@ -20,7 +20,6 @@ setup.rb
 spec/sassafras_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
-swatch.html
 tasks/deployment.rake
 tasks/environment.rake
 tasks/examples.rake

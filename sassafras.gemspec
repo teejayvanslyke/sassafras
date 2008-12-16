@@ -4,13 +4,13 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["T.J. VanSlyke"]
-  s.date = %q{2008-12-15}
+  s.date = %q{2008-12-16}
   s.default_executable = %q{sassafras}
   s.description = %q{Sass color scheme generator}
   s.email = ["tj@elctech.com"]
   s.executables = ["sassafras"]
   s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "README.txt", "website/index.txt"]
-  s.files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "README.txt", "Rakefile", "bin/sassafras", "config/hoe.rb", "config/requirements.rb", "examples/analogous_red.html", "examples/split_complementary_blue.html", "lib/sassafras.rb", "lib/sassafras/swatch.html.erb", "lib/sassafras/version.rb", "script/console", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "spec/sassafras_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "swatch.html", "tasks/deployment.rake", "tasks/environment.rake", "tasks/examples.rake", "tasks/rspec.rake", "tasks/website.rake", "website/index.html", "website/index.txt", "website/javascripts/rounded_corners_lite.inc.js", "website/stylesheets/screen.css", "website/template.html.erb"]
+  s.files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "README.txt", "Rakefile", "bin/sassafras", "config/hoe.rb", "config/requirements.rb", "examples/analogous_red.html", "examples/split_complementary_blue.html", "lib/sassafras.rb", "lib/sassafras/swatch.html.erb", "lib/sassafras/version.rb", "script/console", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "spec/sassafras_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/deployment.rake", "tasks/environment.rake", "tasks/examples.rake", "tasks/rspec.rake", "tasks/website.rake", "website/index.html", "website/index.txt", "website/javascripts/rounded_corners_lite.inc.js", "website/stylesheets/screen.css", "website/template.html.erb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/teejayvanslyke/sassafras}
   s.post_install_message = %q{

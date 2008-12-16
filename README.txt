@@ -1,5 +1,8 @@
-Sassafras
-=========
+= sassafras
+
+* http://www.elctech.com/projects/instant-sass-color-palettes-with-sassafras
+
+== DESCRIPTION:
 
 After spending hours copying and pasting hex values into my Sass stylesheets, 
 I knew there had to be a better way.  Enter Sassafras, the Sass color scheme 
@@ -16,16 +19,9 @@ logically-named Sass variables for varying lightnesses:
 * rectangle
 * square
 
-Installation
-============
+== FEATURES/PROBLEMS:
 
-Note:  Make sure you're using RubyGems >= 1.2.0.
-
-    $ sudo gem sources -a http://gems.github.com
-    $ sudo gem install teejayvanslyke-sassafras
-
-Usage
-=====
+== SYNOPSIS:
 
 Generate basic variants of red:
     
@@ -48,6 +44,43 @@ Generate basic variants of red and green:
 Sassafras can also generate an HTML reference sheet with color swatches:
 
     $ sassafras -t split_complementary -b blue -f html
-    
+
 For more information on the various types of color schemes supported by Sassafras, 
 please see the color theory tutorial on which Sassafras was based at http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm
+
+== REQUIREMENTS:
+
+* color-tools
+* activesupport
+
+== INSTALL:
+
+Note:  Make sure you're using RubyGems >= 1.2.0.
+
+    $ sudo gem sources -a http://gems.github.com
+    $ sudo gem install teejayvanslyke-sassafras
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2008 FIX
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
