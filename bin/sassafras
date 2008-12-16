@@ -5,8 +5,8 @@
 
 begin
   require 'rubygems'
-  require File.dirname(__FILE__) + '/../lib/sassafras/version.rb'
-  require File.dirname(__FILE__) + '/../lib/sassafras'
+  gem     'sassafras'
+  require 'sassafras'
 rescue LoadError
   # no rubygems to load, so we fail silently
 end

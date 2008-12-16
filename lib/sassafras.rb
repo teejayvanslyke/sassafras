@@ -3,6 +3,8 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'rubygems'
 
+require File.dirname(__FILE__) + '/sassafras/version'
+
 gem     'color-tools'
 require 'color'
 
@@ -230,7 +232,7 @@ module Sassafras
       @theme = theme
       File.open(File.dirname(__FILE__) + '/sassafras/swatch.html.erb') do |f|
         erb = ERB.new(f.read)
-        erb.run(@theme.get_binding)
+        erb.result(@theme.get_binding)
       end
     end
   end
