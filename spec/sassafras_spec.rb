@@ -3,23 +3,23 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 describe Sassafras do
 
   describe Sassafras::Theme do 
+    
+    def red_values
+      {
+        'lightest' => '#ffe6e6',
+        'lighter'  => '#ffb3b3',
+        'light'    => '#ff8080',
+        'mid'      => '#ff0000',
+        'dark'     => '#800000',
+        'darker'   => '#4d0000',
+        'darkest'  => '#1a0000'
+      }
+    end
 
     describe "when creating a basic color scheme" do
    
       before :each do
         @sassafras = Sassafras::Theme.basic(:red)
-      end
-
-      def red_values
-        {
-          'lightest' => '#ffe6e6',
-          'lighter'  => '#ffb3b3',
-          'light'    => '#ff8080',
-          'mid'      => '#ff0000',
-          'dark'     => '#800000',
-          'darker'   => '#4d0000',
-          'darkest'  => '#1a0000'
-        }
       end
 
       it "sets the base color" do
@@ -52,6 +52,25 @@ SASS
 
       it "only has one color set" do
         @sassafras.colors.size.should == 1
+      end
+    end
+    
+    
+    describe "when creating a color scheme from hex" do
+      
+      before :each do
+        @sassafras = Sassafras::Theme.basic('#ff0000')
+      end
+
+      it "sets the base color" do
+        @sassafras.base.should == "#ff0000"
+      end
+      
+      it "generates the base tints and shades" do
+        red_values.each do |name, hex|
+          @sassafras.colors(:base).should have_key(name)
+          @sassafras.colors(:base)[name].should == hex
+        end
       end
     end
 

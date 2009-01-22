@@ -58,7 +58,8 @@ module Sassafras
     end
 
     def initialize(base)
-      @base_rgb   = Color::RGB.const_get(base.to_s.camelize)
+      is_hex = (base =~ /#.*/)
+      @base_rgb   = is_hex ? Color::RGB.from_html(base) : Color::RGB.const_get(base.to_s.camelize)
       @colors     = { 'base' => 
         Tints.new(@base_rgb).colors.merge(
         Shades.new(@base_rgb).colors)
